@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="MVVM.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ name }} 's age is {{ age }}</h1>
+    </div>
+    <script>
+      let vm = new mvvm({
+        el: "#app",
+        data: {
+          name: "jey",
+          age: 3
+        }
+      });
+      window.onclick = function() {
+        vm.$data.age++;
+      };
+    </script>
+  </body>
+</html>

@@ -58,7 +58,7 @@ function observe(data) {
 ```
 
 ## 观察者模式
-
+观察者模式也叫发布/订阅模式，
 ```
 class Subject {
   constructor() {
@@ -102,4 +102,11 @@ observer2.update = function() {
 subject.addObserver(observer2)
 
 subject.notify()
+```
+## MVVM
+Model 表示应用程序使用的数据
+View 是与用户进行交互的桥梁。
+ViewModel 充当数据转换器，讲 Model 信息转换为 View 的信息，讲命令从 View 传递到 Model。
+```
+
 ```

@@ -8,6 +8,7 @@
   </head>
   <body>
     <script>
+      //主题
       class Subject {
         constructor() {
           this.observers = [];
@@ -27,26 +28,28 @@
           });
         }
       }
-
+      //订阅者
       class Observer {
         constructor() {
           this.update = function() {};
         }
+        subscribeTo(subject) {
+          subject.addObserver(this);
+        }
       }
 
       let subject = new Subject();
-      let observer1 = new Observer();
-      observer1.update = function() {
-        console.log("observer1 update");
+      let observer = new Observer();
+      observer.update = function() {
+        console.log("observer update");
       };
-      subject.addObserver(observer1);
+      observer.subscribeTo(subject); //观察者订阅主题
 
-      let observer2 = new Observer("valley");
+      let observer2 = new Observer();
       observer2.update = function() {
         console.log("observer2 update");
       };
-      subject.addObserver(observer2);
-
+      observer2.subscribeTo(subject); //观察者订阅主题
       subject.notify();
     </script>
   </body>
