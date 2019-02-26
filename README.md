@@ -8,8 +8,14 @@ object.defineProperty()方法会直接在一个对象上定义一个新属性，
 
 - obj 要处理的目标对象
 - prop 要定义或修改的属性的名称
-- descriptor 将被定义或修改的属性描述符 - value：该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。（默认 undefined） - writable：该属性是否只读，（默认 false，只读） - configurable 是否通过 Object.defineProperty 修改属性，或删除属性（默认 false，不能删除） - enumerable 是否遍历对象的时候会忽略当前属性（默认 false，不能遍历） - get - set
-  注意：数据描述符（value,writable）和存取描述符（get，set）不能同时存在
+- descriptor 将被定义或修改的属性描述符
+  - value：该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。（默认 undefined）
+  - writable：该属性是否只读，（默认 false，只读）
+  - configurable 是否通过 Object.defineProperty 修改属性，或删除属性（默认 false，不能删除）
+  - enumerable 是否遍历对象的时候会忽略当前属性（默认 false，不能遍历）
+  - get
+  - set
+    注意：数据描述符（value,writable）和存取描述符（get，set）不能同时存在
 
 ## 数据劫持
 
