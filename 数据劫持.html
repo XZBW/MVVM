@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var data = {
+        name: "hunger",
+        friends: [1, 2, 3]
+      };
+      observe(data);
+      data.name//触发get函数
+      data.friends[0]//触发get函数
+      data.name = "valley";//触发set函数
+      data.friends[0] = 4;//触发set函数
+
+      function observe(data) {
+        if (!data || typeof data !== "object") return;
+        for (var key in data) {
+          let val = data[key]; //注意点1：这里是 let 不是 var，想想为什么
+          Object.defineProperty(data, key, {
+            enumerable: true,//允许遍历
+            configurable: true,//允许修改和删除
+            get: function() {
+              console.log(`get: ${val}`);
+              return val;
+            },
+            set: function(newVal) {
+              console.log(`set: ${val} => ${newVal}`);
+              val = newVal;
+            }
+          });
+          if (typeof val === "object") {
+            observe(val);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

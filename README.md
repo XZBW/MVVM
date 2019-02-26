@@ -19,6 +19,9 @@ object.defineProperty()方法会直接在一个对象上定义一个新属性，
 
 ## 数据劫持
 
+observe 函数实现了一个数据监听，当监听某个对象后，我们可以在用户读取或者设置属性值的时候做个拦截，做我们想做的事。
+值得注意的是在 vue 的下一个版本中（vue3.0）将原来的 Object.defineProperty 改用 ES6 的 Proxy 来做数据劫持。
+
 ```
 var data = {
   name: 'hunger',
@@ -52,4 +55,51 @@ function observe(data) {
     }
   }
 }
+```
+
+## 观察者模式
+
+```
+class Subject {
+  constructor() {
+    this.observers = []
+  }
+  addObserver(observer) {
+    this.observers.push(observer)
+  }
+  removeObserver(observer) {
+    var index = this.observers.indexOf(observer)
+    if(index > -1){
+      this.observers.splice(index, 1)
+    }
+  }
+  notify() {
+    this.observers.forEach(observer=> {
+      observer.update()
+    })
+  }
+}
+
+
+class Observer{
+  constructor() {
+    this.update = function() {}
+  }
+}
+
+
+let subject = new Subject()
+let observer1 = new Observer()
+observer1.update = function() {
+  console.log('observer1 update')
+}
+subject.addObserver(observer1)
+
+let observer2 = new Observer('valley')
+observer2.update = function() {
+  console.log('observer2 update')
+}
+subject.addObserver(observer2)
+
+subject.notify()
 ```
